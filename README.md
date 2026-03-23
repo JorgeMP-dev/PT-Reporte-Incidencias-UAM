@@ -59,8 +59,7 @@ Insertar Datos Principales.txt dentro de configuracion
 ## Autor
 
 **Jorge Mendoza**  
-Ingeniería en Sistemas — UAM Azcapotzalco  
-Proyecto Terminal — 2026
+Ingeniería en Computacion — UAM Azcapotzalco  
 
 ---
 
