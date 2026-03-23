@@ -1,0 +1,134 @@
+/* ── Botones de selección (Ayudantes / Profesores) ── */
+.tabs-selector {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 22px;
+  border-radius: 10px;
+  border: 2px solid #5e6872;
+  background: #fff;
+  color: #212529;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s;
+}
+.tab-btn:hover {
+  border-color: #6c7ae0;
+  color: #6c7ae0;
+}
+.tab-btn.active {
+  background: linear-gradient(135deg, #2d3250, #424769);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(44,50,80,.2);
+}
+.tab-btn i { font-size: 15px; }
+
+
+
+/* ══════════════════════════════════════════
+   SECCIÓN HORARIO — fila dinámica
+══════════════════════════════════════════ */
+
+.horario-item {
+  background: #fafbff;
+  border: 1.5px solid #f0f2f9;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 10px !important;
+  transition: border-color .2s;
+}
+.horario-item:hover {
+  border-color: #e0e4f3;
+}
+
+.horario-item label {
+  font-size: 11px !important;
+  color: #8b91b0 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 4px;
+}
+
+/* Botón eliminar fila horario */
+.btn-eliminar-horario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background: #fff0f0;
+  color: #e74c3c;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s, transform .1s;
+}
+.btn-eliminar-horario:hover {
+  background: #e74c3c;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* Botón añadir día */
+.btn-añadir-dia {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #eef8f0;
+  color: #27ae60;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s, transform .1s;
+}
+.btn-añadir-dia:hover {
+  background: #27ae60;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* ══════════════════════════════════════════
+   TABLA DENTRO DEL MODAL (ej: modalHorario)
+══════════════════════════════════════════ */
+
+.modal-body .table100 thead tr {
+  background: linear-gradient(90deg, #2d3250 0%, #424769 100%) !important;
+}
+.modal-body .table100 thead th {
+  background: transparent !important;
+  color: #e8eaf6 !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: .8px !important;
+  padding: 12px 16px !important;
+  border: none !important;
+}
+.modal-body .table100 tbody td {
+  font-size: 13px !important;
+  color: #4a5070 !important;
+  padding: 10px 16px !important;
+  border: none !important;
+  border-bottom: 1px solid #f0f2f9 !important;
+}
+.modal-body .table100 tbody tr:hover {
+  background: #f4f5ff !important;
+}

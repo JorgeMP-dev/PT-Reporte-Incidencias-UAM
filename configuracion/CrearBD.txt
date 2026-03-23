@@ -1,0 +1,191 @@
+drop database incidencias;
+CREATE DATABASE incidencias;
+use incidencias;
+
+CREATE TABLE IF NOT EXISTS `incidencias`.`aula` (
+  `idaula` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idaula`),
+  UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC) )
+  ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `incidencias`.`equipo` (
+  `idequipo` INT NOT NULL AUTO_INCREMENT,
+  `codigoInventario` VARCHAR(45) NOT NULL,
+  `nombre` VARCHAR(45) NULL,
+  `idaula` INT NOT NULL,
+  PRIMARY KEY (`idequipo`),
+  INDEX `aula_idx` (`idaula` ASC) ,
+  UNIQUE INDEX `codigoInventario_UNIQUE` (`codigoInventario` ASC) ,
+  CONSTRAINT `aula`
+    FOREIGN KEY (`idaula`)
+    REFERENCES `incidencias`.`aula` (`idaula`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `incidencias`.`estado` (
+  `idestado` INT NOT NULL,
+  `nombre` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idestado`),
+  UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC) )
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `incidencias`.`tipoIncidencia` (
+  `idtipoIncidencia` INT NOT NULL,
+  `nombre` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idtipoIncidencia`),
+  UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC) )
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `incidencias`.`tipoPersonal` (
+  `idtipoPersonal` INT NOT NULL ,
+  `nombre` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idtipoPersonal`),
+  UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC) )
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `incidencias`.`personal` (
+  `idpersonal` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `apellidoM` VARCHAR(45) NOT NULL,
+  `apellidoP` VARCHAR(45) NOT NULL,
+  `numeroEconomico` VARCHAR(45) NULL,
+  `correo` VARCHAR(45) NOT NULL,
+  `telefono` VARCHAR(45) ,
+  `idtelegram` VARCHAR(45) UNIQUE,
+  `codigoUnico` VARCHAR(45) UNIQUE,
+  `estado` ENUM('ACTIVO','INACTIVO') NOT NULL DEFAULT 'ACTIVO',	
+  `idtipoPersonal` INT NOT NULL,
+  PRIMARY KEY (`idpersonal`),
+  UNIQUE INDEX `telefono_UNIQUE` (`telefono` ASC) ,
+  UNIQUE INDEX `correo_UNIQUE` (`correo` ASC) ,
+  UNIQUE INDEX `numeroEconomico_UNIQUE` (`numeroEconomico` ASC) ,
+  INDEX `tipo_idx` (`idtipoPersonal` ASC) ,
+  CONSTRAINT `tipoPersonal`
+    FOREIGN KEY (`idtipoPersonal`)
+    REFERENCES `incidencias`.`tipoPersonal` (`idtipoPersonal`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `incidencias`.`incidencia` (
+  `idincidencia` INT NOT NULL AUTO_INCREMENT,
+  `idtipoIncidencia` INT NOT NULL,
+  `descripcion` VARCHAR(45) NULL,
+  `idestado` INT NOT NULL,
+  `idequipo` INT NOT NULL,
+  `solucion` VARCHAR(45) NULL,
+  `fechaReporte` DATE NOT NULL,
+  `realizoReporte` VARCHAR(45) NOT NULL,
+  `idpersonal` INT NULL,
+  `fechaSolucion` DATE NULL,
+  `ultimoRecordatorio` DATETIME NULL DEFAULT NULL,
+  PRIMARY KEY (`idincidencia`),
+  INDEX `equipo_idx` (`idequipo` ASC) ,
+  INDEX `personal_idx` (`idpersonal` ASC) ,
+  INDEX `estado_idx` (`idestado` ASC) ,
+  INDEX `tipo_idx` (`idtipoIncidencia` ASC) ,
+  CONSTRAINT `equipo`
+    FOREIGN KEY (`idequipo`)
+    REFERENCES `incidencias`.`equipo` (`idequipo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `personal`
+    FOREIGN KEY (`idpersonal`)
+    REFERENCES `incidencias`.`personal` (`idpersonal`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `estado`
+    FOREIGN KEY (`idestado`)
+    REFERENCES `incidencias`.`estado` (`idestado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `tipoIncidencia`
+    FOREIGN KEY (`idtipoIncidencia`)
+    REFERENCES `incidencias`.`tipoIncidencia` (`idtipoIncidencia`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `incidencias`.`horario` (
+  `idhorario` INT NOT NULL AUTO_INCREMENT,
+  `idpersonal` INT NOT NULL,
+  `diaSemana` ENUM("lunes", "martes", "miercoles", "jueves", "viernes") NOT NULL,
+  `horaInicio` TIME NOT NULL,
+  `horaFin` TIME NOT NULL,
+  PRIMARY KEY (`idhorario`),
+  INDEX `personal_idx` (`idpersonal` ASC) ,
+  CONSTRAINT `personalHorario`
+    FOREIGN KEY (`idpersonal`)
+    REFERENCES `incidencias`.`personal` (`idpersonal`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `incidencias`.`usuario` (
+  `idusuario` INT NOT NULL AUTO_INCREMENT,
+  `idpersonal` INT NOT NULL,
+  `usuario` VARCHAR(45) NOT NULL,
+  `contraseña` VARCHAR(255) NOT NULL,
+  `estado` ENUM('activo','inactivo') DEFAULT 'activo',
+  PRIMARY KEY (`idusuario`),
+  UNIQUE INDEX `idpersonal_UNIQUE` (`idpersonal` ASC) ,
+  CONSTRAINT `personalUsuario`
+    FOREIGN KEY (`idpersonal`)
+    REFERENCES `incidencias`.`personal` (`idpersonal`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `incidencias`.`notificacionIncidencia` (  
+    `idnotificacion` INT AUTO_INCREMENT PRIMARY KEY,
+    `idincidencia` INT NOT NULL,
+    `idtelegram` BIGINT NOT NULL,
+    `idmensaje` BIGINT NOT NULL,
+    `recordatorios` INT DEFAULT 0,
+    CONSTRAINT `incidenciasNotificacion`
+    	FOREIGN KEY (`idincidencia`)
+    	REFERENCES `incidencias`.`incidencia` (`idincidencia`)
+    	ON DELETE NO ACTION
+    	ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `incidencias`.`bajasPersonal` (  
+    `idbaja` INT AUTO_INCREMENT PRIMARY KEY,
+    `idpersonal` INT NOT NULL UNIQUE,
+    `fecha_baja` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `motivo` VARCHAR(255) NOT NULL,
+    CONSTRAINT `bajaPersonal`
+    	FOREIGN KEY (`idpersonal`)
+    	REFERENCES `incidencias`.`personal` (`idpersonal`)
+    	ON DELETE NO ACTION
+    	ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `incidencias`.`tipoPermiso` (  
+    `idtipoPermiso` INT PRIMARY KEY,
+    `nombre` VARCHAR(45) NOT NULL UNIQUE )
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `incidencias`.`modulo` (  
+    `idmodulo` INT AUTO_INCREMENT PRIMARY KEY,
+    `nombre` VARCHAR(45) NOT NULL UNIQUE )
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `incidencias`.`permiso` (  
+    `idpermiso` INT AUTO_INCREMENT PRIMARY KEY,
+    `idusuario` INT NOT NULL,
+    `idmodulo` INT NOT NULL,
+    `idtipoPermiso` INT NOT NULL,
+    UNIQUE (idusuario, idmodulo),
+    FOREIGN KEY (idusuario)
+        REFERENCES `incidencias`.`usuario` (idusuario)
+        ON DELETE CASCADE,
+    FOREIGN KEY (idmodulo)
+        REFERENCES `incidencias`.`modulo`(idmodulo)
+        ON DELETE CASCADE,
+    FOREIGN KEY (idtipoPermiso)
+        REFERENCES `incidencias`.`tipoPermiso`(idtipoPermiso)
+        ON DELETE NO ACTION)
+ENGINE = InnoDB;

@@ -1,0 +1,30 @@
+/* Etiquetas tipo Urgencia */
+.badge-tipo {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .3px;
+}
+.badge-urgente { background: #fff0f0; color: #e74c3c; }
+.badge-normal  { background: #f0f7ff; color: #3498db; }
+
+/* Botónes ToolBar */
+.btn-estadisticas {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #43b97f, #2ecc71);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  transition: opacity .2s, transform .15s;
+  box-shadow: 0 3px 10px rgba(46, 204, 113, .3);
+}
+.btn-estadisticas:hover { opacity: .9; transform: translateY(-1px); }

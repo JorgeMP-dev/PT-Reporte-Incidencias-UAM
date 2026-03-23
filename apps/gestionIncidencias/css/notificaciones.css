@@ -1,0 +1,78 @@
+/* ── Fila urgente resaltada ── */
+.table100 tbody tr.fila-urgente td,
+.table100 tbody tr.urgente td {
+  background-color: #dc3545 !important;
+  color: #fff !important;
+  animation: parpadeo 2s infinite;
+}
+
+/* Los elementos hijos también en blanco */
+.table100 tbody tr.fila-urgente td .badge-tipo,
+.table100 tbody tr.urgente td .badge-tipo,
+.table100 tbody tr.fila-urgente td .id-pill,
+.table100 tbody tr.urgente td .id-pill,
+.table100 tbody tr.fila-urgente td .fecha-chip,
+.table100 tbody tr.urgente td .fecha-chip {
+  background: rgba(255,255,255,.2) !important;
+  color: #fff !important;
+}
+
+@keyframes parpadeo {
+  0%   { opacity: 1; }
+  50%  { opacity: .7; }
+  100% { opacity: 1; }
+}
+
+/* ── Botones de estado ── */
+.btn-estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 13px;
+  border-radius: 7px;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity .15s, transform .1s;
+}
+.btn-estado:hover { opacity: .85; transform: translateY(-1px); }
+
+/* Atender (verde) */
+.btn-atender {
+  background: #eef8f0;
+  color: #27ae60;
+}
+.btn-atender:hover {
+  background: #27ae60;
+  color: #fff;
+}
+
+/* Solucionada (azul) */
+.btn-solucionar {
+  background: #eef0ff;
+  color: #6c7ae0;
+}
+.btn-solucionar:hover {
+  background: #6c7ae0;
+  color: #fff;
+}
+
+/* ── Chip "atendiendo otro" ── */
+.atendiendo-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #fff8e8;
+  color: #e67e22;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.atendiendo-chip i { font-size: 12px; }
+
+

@@ -1,0 +1,14 @@
+.imprimirQR{
+    width: 270px;
+    height: 270px;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #zonaQR *{
+    visibility: visible;
+  }
+}

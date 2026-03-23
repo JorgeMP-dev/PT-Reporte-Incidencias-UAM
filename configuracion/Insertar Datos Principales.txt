@@ -1,0 +1,88 @@
+INSERT INTO aula (nombre) VALUES 
+("E306"),("E309"),("G206"),("G208"),("BYRON"),("BABBAGE"),("W305"),("W002");
+
+INSERT INTO estado VALUES (1,"Pendiente"),(2,"Solucionada"),(3,"Atendiendo");
+
+INSERT INTO tipoIncidencia VALUES (1,"Urgente"),(2,"Normal");
+
+INSERT INTO tipoPersonal VALUES (1,"Servicio Social"),(2,"Ayudante"),(3,"Profesor"),(4,"Administrativo");
+
+INSERT INTO personal (nombre,apellidoM,apellidoP,numeroEconomico,correo,telefono,idtipoPersonal,codigoUnico) 
+VALUES ("Jorge","Peñaloza","Mendoza","2222000180","al2222000180@azc.uam.mx","5514774845",1,"l4r4"); 	
+
+INSERT INTO horario (idpersonal, diaSemana, horaInicio, horaFin) VALUES
+(1, 'lunes',     '11:30:00', '15:30:00'),
+(1, 'miercoles', '11:30:00', '15:30:00'),
+(1, 'viernes',   '11:30:00', '15:30:00'),
+(1, 'martes',    '13:00:00', '17:00:00'),
+(1, 'jueves',    '13:00:00', '17:00:00');
+
+INSERT INTO equipo (codigoInventario, idaula, nombre) VALUES
+-- E306
+('DS000001',1,'PC 1'),('DS000002',1,'PC 2'),('DS000003',1,'PC 3'),('DS000004',1,'PC 4'),
+('DS000005',1,'PC 5'),('DS000006',1,'PC 6'),('DS000007',1,'PC 7'),('DS000008',1,'PC 8'),
+('DS000009',1,'PC 9'),('DS000010',1,'PC 10'),('DS000011',1,'PC 11'),('DS000012',1,'PC 12'),
+('DS000013',1,'PC 13'),('DS000014',1,'PC 14'),('DS000015',1,'PC 15'),('DS000016',1,'PC 16'),
+('DS000017',1,'PC 17'),('DS000018',1,'PC 18'),('DS000019',1,'PC 19'),('DS000020',1,'PC 20'),
+
+-- E309
+('DS000021',2,'PC 1'),('DS000022',2,'PC 2'),('DS000023',2,'PC 3'),('DS000024',2,'PC 4'),
+('DS000025',2,'PC 5'),('DS000026',2,'PC 6'),('DS000027',2,'PC 7'),('DS000028',2,'PC 8'),
+('DS000029',2,'PC 9'),('DS000030',2,'PC 10'),('DS000031',2,'PC 11'),('DS000032',2,'PC 12'),
+('DS000033',2,'PC 13'),('DS000034',2,'PC 14'),('DS000035',2,'PC 15'),('DS000036',2,'PC 16'),
+('DS000037',2,'PC 17'),('DS000038',2,'PC 18'),('DS000039',2,'PC 19'),('DS000040',2,'PC 20'),
+
+-- G206
+('DS000041',3,'PC 1'),('DS000042',3,'PC 2'),('DS000043',3,'PC 3'),('DS000044',3,'PC 4'),
+('DS000045',3,'PC 5'),('DS000046',3,'PC 6'),('DS000047',3,'PC 7'),('DS000048',3,'PC 8'),
+('DS000049',3,'PC 9'),('DS000050',3,'PC 10'),('DS000051',3,'PC 11'),('DS000052',3,'PC 12'),
+('DS000053',3,'PC 13'),('DS000054',3,'PC 14'),('DS000055',3,'PC 15'),('DS000056',3,'PC 16'),
+('DS000057',3,'PC 17'),('DS000058',3,'PC 18'),('DS000059',3,'PC 19'),('DS000060',3,'PC 20'),
+
+-- G208
+('DS000061',4,'PC 1'),('DS000062',4,'PC 2'),('DS000063',4,'PC 3'),('DS000064',4,'PC 4'),
+('DS000065',4,'PC 5'),('DS000066',4,'PC 6'),('DS000067',4,'PC 7'),('DS000068',4,'PC 8'),
+('DS000069',4,'PC 9'),('DS000070',4,'PC 10'),('DS000071',4,'PC 11'),('DS000072',4,'PC 12'),
+('DS000073',4,'PC 13'),('DS000074',4,'PC 14'),('DS000075',4,'PC 15'),('DS000076',4,'PC 16'),
+('DS000077',4,'PC 17'),('DS000078',4,'PC 18'),('DS000079',4,'PC 19'),('DS000080',4,'PC 20'),
+
+-- BYRON
+('DS000081',5,'PC 1'),('DS000082',5,'PC 2'),('DS000083',5,'PC 3'),('DS000084',5,'PC 4'),
+('DS000085',5,'PC 5'),('DS000086',5,'PC 6'),('DS000087',5,'PC 7'),('DS000088',5,'PC 8'),
+('DS000089',5,'PC 9'),('DS000090',5,'PC 10'),('DS000091',5,'PC 11'),('DS000092',5,'PC 12'),
+('DS000093',5,'PC 13'),('DS000094',5,'PC 14'),('DS000095',5,'PC 15'),('DS000096',5,'PC 16'),
+('DS000097',5,'PC 17'),('DS000098',5,'PC 18'),('DS000099',5,'PC 19'),('DS000100',5,'PC 20'),
+
+-- BABBAGE
+('DS000101',6,'PC 1'),('DS000102',6,'PC 2'),('DS000103',6,'PC 3'),('DS000104',6,'PC 4'),
+('DS000105',6,'PC 5'),('DS000106',6,'PC 6'),('DS000107',6,'PC 7'),('DS000108',6,'PC 8'),
+('DS000109',6,'PC 9'),('DS000110',6,'PC 10'),('DS000111',6,'PC 11'),('DS000112',6,'PC 12'),
+('DS000113',6,'PC 13'),('DS000114',6,'PC 14'),('DS000115',6,'PC 15'),('DS000116',6,'PC 16'),
+('DS000117',6,'PC 17'),('DS000118',6,'PC 18'),('DS000119',6,'PC 19'),('DS000120',6,'PC 20'),
+
+-- W002
+('DS000121',7,'PC 1'),('DS000122',7,'PC 2'),('DS000123',7,'PC 3'),('DS000124',7,'PC 4'),
+('DS000125',7,'PC 5'),('DS000126',7,'PC 6'),('DS000127',7,'PC 7'),('DS000128',7,'PC 8'),
+('DS000129',7,'PC 9'),('DS000130',7,'PC 10'),('DS000131',7,'PC 11'),('DS000132',7,'PC 12'),
+('DS000133',7,'PC 13'),('DS000134',7,'PC 14'),('DS000135',7,'PC 15'),('DS000136',7,'PC 16'),
+('DS000137',7,'PC 17'),('DS000138',7,'PC 18'),('DS000139',7,'PC 19'),('DS000140',7,'PC 20'),
+
+-- W305
+('DS000141',8,'PC 1'),('DS000142',8,'PC 2'),('DS000143',8,'PC 3'),('DS000144',8,'PC 4'),
+('DS000145',8,'PC 5'),('DS000146',8,'PC 6'),('DS000147',8,'PC 7'),('DS000148',8,'PC 8'),
+('DS000149',8,'PC 9'),('DS000150',8,'PC 10'),('DS000151',8,'PC 11'),('DS000152',8,'PC 12'),
+('DS000153',8,'PC 13'),('DS000154',8,'PC 14'),('DS000155',8,'PC 15'),('DS000156',8,'PC 16'),
+('DS000157',8,'PC 17'),('DS000158',8,'PC 18'),('DS000159',8,'PC 19'),('DS000160',8,'PC 20');
+
+INSERT INTO incidencia (descripcion, fechaReporte, idequipo, idestado, idtipoIncidencia, realizoReporte) VALUES
+("Monitor no enciende", "2026-01-25", 1, 1, 1,"Jorge Mendoza Peñaloza"),
+("Teclado no funciona", "2026-01-25", 2, 1, 2,"Alumno");
+
+INSERT INTO tipoPermiso VALUES (1,'ADMINISTRADOR'),(2,'EDICION'),(3,'LECTURA');
+
+INSERT INTO modulo (nombre) VALUES ('Gestion Incidencias'),('Generador CodigosQR'),
+				   ('Historial Incidencias'),('Gestion Personal'),('Usuarios'),
+                                   ('Estadisticas Incidencias');
+
+INSERT INTO permiso (idmodulo,idtipoPermiso,idusuario) values (1,1,1),(2,1,1),(3,1,1),(4,1,1),(5,1,1),(6,1,1);
+

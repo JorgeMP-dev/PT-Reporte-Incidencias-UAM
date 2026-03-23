@@ -1,0 +1,32 @@
+/* ── Botón permisos (amarillo/dorado) ── */
+.btn-permisos { background: #fffbea; color: #d4a017; }
+.btn-permisos:hover { background: #d4a017; color: #fff; }
+
+/* ── Badge estado usuario ── */
+.badge-estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.badge-estado i { font-size: 7px; }
+
+.badge-activo   { background: #eef8f0; color: #27ae60; }
+.badge-inactivo { background: #f5f5f5; color: #aaa; }
+
+/* ── Chip nombre de usuario ── */
+.usuario-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f0f2f9;
+  color: #2d3250;
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.usuario-chip i { font-size: 13px; color: #6c7ae0; }

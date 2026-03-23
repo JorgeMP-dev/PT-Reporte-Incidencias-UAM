@@ -1,0 +1,58 @@
+EN C:\xampp\php\php.ini quitar ; de ;extension=gd
+
+Declarar variable token para el bot de telegram:
+en: C:\xampp\apache\conf\extra\httpd-xampp.conf 
+agregar al final: SetEnv TELEGRAM_BOT_TOKEN 8554867811:TU_TOKEN_REAL
+Reiniciar Apache
+
+Cambiar ip de los QR en tablaEquipos de la app de qr
+Para simular tener un https y usar el bot de telegram descargar ngrok.exe
+Moverlo a carpeta C:\ngrok
+Ejercutar en cmd ngrok config add-authtoken 39Nib5pqjAK2YBJCXjaHs2vxmGf_2zHrTQZxeJWxkC9Zsd1Dh
+Ejecutar ngrok http 80 y copiar https
+
+Cambiar ruta por la creada ngrok en ReporteIncidenciasUAM/apps/notificacionesTelegram/parametrosBot.php
+Y luego abrir en el navegador localhost/ReporteIncidenciasUAM/apps/notificacionesTelegram/webhook.php para actualizar la dirección al bot
+
+Corregir Zona horaria
+En C:\xampp\mysql\bin\my.ini
+Agregar: 
+[mysqld]
+default-time-zone = '-06:00'
+
+
+-------------------------------------------------------------------
+
+Configurar que se ejecute recordatoriosNotificaciones.php cada 5 min
+
+Windows
+Paso 1 — Abrir el Programador de Tareas
+	Presiona Win + R, escribe taskschd.msc y Enter
+Paso 2 — Crear tarea 
+	En el panel derecho clic en Crear tarea... (no "básica")
+Paso 3 — Nombre
+	Recordatorio Incidencias Telegram
+Paso 4 — Desencadenador
+	Iniciar la tarea: Con una programación
+	Configuración: Diariamente
+	Repetir cada: 1 días
+	✅ Repetir cada: 5 minutos
+	Duracion: Indefinidamente
+Paso 5 — Acción
+	Selecciona "Iniciar un programa"
+	Programa: C:\xampp\php\php.exe
+	Argumentos: C:\xampp\htdocs\ReporteIncidenciasUAM\apps\notificacionesTelegram\recordatoriosNotificaciones.php
+Paso 6 — Verificar que funciona
+	Abre el cron manualmente para probar: bashC:\xampp\php\php.exe C:\xampp\htdocs\tu_proyecto\recordatorio_incidencias.php
+	Si no lanza errores, está listo.
+
+Linux
+Abre la terminal y edita el crontab: bashcrontab -e
+Si es la primera vez te pregunta el editor, elige nano (opción 1).
+Agrega esta línea al final del archivo: 
+bash*/5 * * * * /opt/lampp/bin/php/opt/lampp/htdocs/tu_proyecto/recordatorio_incidencias.php >> /var/log/telegram_cron.log 2>&1
+Guarda con Ctrl+O, Enter, y sal con Ctrl+X.
+
+Verificar que quedó guardado bashcrontab -l
+Probar manualmente que funciona: bash/opt/lampp/bin/php /opt/lampp/htdocs/tu_proyecto/recordatorio_incidencias.php
+Ver los logs si algo falla: bashtail -f /var/log/telegram_cron.log
